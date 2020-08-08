@@ -1,26 +1,22 @@
+var generate = document.querySelector("#generate");
+var textArea = document.querySelector("#textarea");
 
 var lowercaseCharset = "abcdefghijklmnopqrstuvwxyz";
 var uppercaseCharset = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 var numbersCharset = "012345789";
 var specialCharset = "!@#$%^&*_=+-/";
 
-var generate = document.querySelector("#generate");
+var lowercaseCharset = "abcdefghijklmnopqrstuvwxyz"; 
+var uppercaseCharset = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+var numbersCharset = "012345789";
+var specialCharset = "!@#$%^&*_=+-/";
 
-// Check to see if a characterset has been chosen
-var charsetCheck = getPasswordCharset();
-if (charsetCheck.length === 0) {
-    alert("Error: Refresh and confirm use of at least one character set");
-    return;
-}
-
-function getPasswordCharset() {
-    var charset = "";
-    if (inputLowercase = true) {
-        charset += inputLowercase;
-        console.log("Character set includes: " + charset);
-    }
-    
-}
+var charset = "";
+var inputLength = "";
+var inputLowercase = false;
+var inputUppercase = false;
+var inputNumbers = false;
+var inputSpecial = false;
 
 /*if (inputLength < 0) {
     
@@ -30,19 +26,53 @@ function getPasswordCharset() {
 
 
 generate.addEventListener("click", function() {
-    var inputLength = prompt("How long would you like your password? (8-128 characters)");
-    var inputLowercase = confirm("Would you like lowercase letters in your password?");
-    var inputUppercase = confirm("Would you like uppercase letters in your password?");
-    var inputNumbers = confirm("Would you like numbers in your password?");
-    var inputSpecial = confirm("Would you like special characters in your password?");
+    inputLength = prompt("How long would you like your password? (8-128 characters)");
+    inputLowercase = confirm("Would you like lowercase letters in your password?");
+    inputUppercase = confirm("Would you like uppercase letters in your password?");
+    inputNumbers = confirm("Would you like numbers in your password?");
+    inputSpecial = confirm("Would you like special characters in your password?");
+
+    console.log(inputLength);
+
+    getPasswordCharset();
+    console.log("Character set includes: " + charset);
+    generatePassword();
+});
+
+function getPasswordCharset() {
+    if (inputLowercase = true) {
+        charset += lowercaseCharset;
+    }
+    if (inputUppercase = true) {
+        charset += uppercaseCharset;
+    }
+
+    if (inputNumbers = true) {
+        charset += numbersCharset;
+    }
+
+    if (inputSpecial = true) {
+        charset += specialCharset;
+    }
+}
+
+
+function generatePassword() {
     var length = inputLength;
     var passwordOutput = "";
 
-    for (var i =0; i < length; i++) {
+    for (var i = 0; i < length; i++) {
         passwordOutput += charset.charAt(Math.floor(Math.random()*charset.length));
     }
+    
+    textArea.textContent = passwordOutput;
+}
 
-    return passwordOutput;
 
-});
+/*// Check to see if a characterset has been chosen
+var charsetCheck = getPasswordCharset();
+if (charsetCheck.length === 0) {
+    alert("Error: Refresh and confirm use of at least one character set");
+    return;
+}*/
 
